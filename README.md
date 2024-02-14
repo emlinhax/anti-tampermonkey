@@ -21,7 +21,7 @@ const observer = new MutationObserver((mutations) => {
             {
                 if(addedNode.innerHTML.includes("==UserScript=="))
                 {
-                    alert("cheater detected!")
+                    alert("cheater detected!")  // do whatever you want here. ban player, close tab, whatever
                 }
             }
         }
