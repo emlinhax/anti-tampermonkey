@@ -2,19 +2,16 @@
 
 prevent tampermonkey scripts from running on your website / online game. \
 this also works against tampermonkey's "instant injection" mode :)
-
-this code has to be placed into the DOM content. \
-just add a script tag to your website and put this script in there. \
-i recommend putting it above everything else due to execution order. \
 </br>
-how it works:
+
+# how it works:
+
 whenever tampermonkey injects a script, it has to run that script somehow. \
-turns out that it has to modify the "document" root for that ([reference](https://github.com/Tampermonkey/tampermonkey/blob/07f668cd1cabb2939220045839dec4d95d2db0c8/src/environment.js#L52)) \
-</br>
+turns out that it has to modify the "document" root for that ([reference](https://github.com/Tampermonkey/tampermonkey/blob/07f668cd1cabb2939220045839dec4d95d2db0c8/src/environment.js#L52)). \
 to catch this, we just register a mutation observer and wait for a script to be injected! \
-</br>
-NOTE: this snippet should be put into a script tag with the "defer" attribute
-
+# code
+this code has to be placed into a script tag with the "defer" attribute. \
+i recommend putting it above everything else due to execution order. \
 ```js
 const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
